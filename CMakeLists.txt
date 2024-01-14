@@ -17,7 +17,8 @@ add_subdirectory(examples)
 
 set(SOURCES
     src/Canvas.cpp
-    src/QuadShape.cpp)
+    src/QuadShape.cpp
+    src/Vector2.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
