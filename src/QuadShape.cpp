@@ -6,19 +6,23 @@ namespace L2DGL::Graphics
 {
     QuadShape::QuadShape(Vector2 scale)
     {
+        setScale(scale);
+        create();
+    }
+
+    void QuadShape::create()
+    {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         float vertices[_verticesCount][_vectorSize]{
-            {scale.x, scale.y},
-            {scale.x, -scale.y},
-            {-scale.x, scale.y},
-            {-scale.x, -scale.y}};
+            {_scale.x, _scale.y},
+            {_scale.x, -_scale.y},
+            {-_scale.x,_scale.y},
+            {-_scale.x, -_scale.y}};
 
-        unsigned int indices[]
-        {
-            0,1,2,
-            1,2,3
-        };
+        unsigned int indices[]{
+            0, 1, 2,
+            1, 2, 3};
 
         glGenVertexArrays(1, &_VAO);
         glBindVertexArray(_VAO);
@@ -31,7 +35,7 @@ namespace L2DGL::Graphics
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, _vectorSize, GL_FLOAT, GL_FALSE, _vectorSize * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, _vectorSize, GL_FLOAT, GL_FALSE, _vectorSize * sizeof(float), (void *)0);
         glEnableVertexAttribArray(0);
     }
 
