@@ -4,9 +4,9 @@
 
 namespace L2DGL::Graphics
 {
-    QuadShape::QuadShape(Vector2 scale)
+    QuadShape::QuadShape(Vector2 size)
     {
-        setScale(scale);
+        setSize(size);
         create();
     }
 
@@ -15,10 +15,10 @@ namespace L2DGL::Graphics
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         float vertices[_verticesCount][_vectorSize]{
-            {_scale.x, _scale.y},
-            {_scale.x, -_scale.y},
-            {-_scale.x,_scale.y},
-            {-_scale.x, -_scale.y}};
+            {_size.x, _size.y},
+            {_size.x, -_size.y},
+            {-_size.x,_size.y},
+            {-_size.x, -_size.y}};
 
         unsigned int indices[]{
             0, 1, 2,
@@ -46,14 +46,14 @@ namespace L2DGL::Graphics
         glBindVertexArray(0);
     }
 
-    Vector2 QuadShape::getScale()
+    Vector2 QuadShape::getSize()
     {
-        return _scale;
+        return _size;
     }
 
-    void QuadShape::setScale(Vector2 scale)
+    void QuadShape::setSize(Vector2 size)
     {
-        _scale = scale;
+        _size = size;
     }
 
     Vector2 QuadShape::getPosition()
