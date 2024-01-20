@@ -1,7 +1,9 @@
-#include <Vector2.hpp>
-
 #ifndef __QUAD_SHAPE_HPP
 #define __QUAD_SHAPE_HPP
+
+#include <Vector2.hpp>
+#include <GL/glew.h>
+#include <GL/gl.h>
 
 using namespace L2DGL::Math;
 
