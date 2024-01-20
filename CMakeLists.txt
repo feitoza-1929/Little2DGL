@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(L2DGL VERSION 0.2.0)
+project(L2DGL VERSION 0.3.0)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
