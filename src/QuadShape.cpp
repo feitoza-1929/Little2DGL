@@ -2,16 +2,19 @@
 
 namespace L2DGL::Graphics
 {
+
     QuadShape::QuadShape(Vector2 size)
     {
+        const char *vertexShaderPath = "/home/feitoza/Sources/personal_projects/Little2DGraphicsLib/src/DefaultVertexShader.vert";
+        const char *fragmentShaderPath = "/home/feitoza/Sources/personal_projects/Little2DGraphicsLib/src/DefaultFragmentShader.frag";
+
+        _shader = Shader(vertexShaderPath, fragmentShaderPath);
         setSize(size);
         create();
     }
 
     void QuadShape::create()
     {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
         float vertices[_verticesCount][_vectorSize]{
             {_size.x, _size.y},
             {_size.x, -_size.y},
@@ -42,6 +45,13 @@ namespace L2DGL::Graphics
         glBindVertexArray(_VAO);
         glDrawElements(GL_TRIANGLES, _verticesCount, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+    }
+
+    void QuadShape::paint(Color color)
+    {
+        _color = color;
+        _shader.activate();
+        _shader.setVariableFloat4("Color", new float[4]{color.r, color.g, color.b, color.a});
     }
 
     Vector2 QuadShape::getSize()
