@@ -6,8 +6,34 @@ namespace L2DGL::Graphics
 {
     Shader::Shader(const char *vexterPath, const char *fragmentPath)
     {
-        const char *vertexCode = loadShaderCode(vexterPath);
-        const char *fragmentCode = loadShaderCode(fragmentPath);
+        string vShaderStringCode, fShaderStringCode;
+
+        ifstream vShaderFile, fShaderFile;
+        vShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
+        fShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
+
+        try
+        {
+            vShaderFile.open(vexterPath);
+            fShaderFile.open(fragmentPath);
+
+            stringstream vShaderStream, fShaderStream;
+            vShaderStream << vShaderFile.rdbuf();
+            fShaderStream << fShaderFile.rdbuf();
+
+            vShaderFile.close();
+            fShaderFile.close();
+
+            vShaderStringCode = vShaderStream.str();
+            fShaderStringCode = fShaderStream.str();
+        }
+        catch (ifstream::failure ex)
+        {
+            cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << endl;
+        }
+
+        const char *vertexCode = vShaderStringCode.c_str();
+        const char *fragmentCode = fShaderStringCode.c_str();
 
         int isSuccess;
         char logInfo[512];
@@ -44,36 +70,12 @@ namespace L2DGL::Graphics
         if(!isSuccess)
         {
             glGetProgramInfoLog(Id, 512, NULL, logInfo);
-            cout << "ERROR:SHADER::PROGRAM::LINKING_FAILED\n"
+            cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
                  << logInfo << endl;
         }
 
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
-    }
-
-    const char *Shader::loadShaderCode(const char *shaderPath)
-    {
-        const char *shaderSourceCode;
-        ifstream shaderFile;
-        shaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-
-        try
-        {
-            shaderFile.open(shaderPath);
-
-            stringstream shaderStream;
-            shaderStream << shaderFile.rdbuf();
-
-            shaderFile.close();
-
-            shaderSourceCode = shaderStream.str().c_str();
-        }
-        catch(ifstream::failure ex)
-        {
-            cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << endl;
-        }
-        return shaderSourceCode;
     }
 
     void Shader::setVariableFloat(char *name, float value)

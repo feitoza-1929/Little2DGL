@@ -15,14 +15,12 @@ namespace L2DGL::Graphics
         unsigned int Id;
 
     public:
+        Shader() = default;
         Shader(const char *vexterPath, const char *fragmentPath);
-        const char *loadShaderCode(const char *shaderPath);
         void setVariableFloat(char *name, float value);
         void setVariableFloat4(char *name, float *values);
         void activate();
         unsigned int getId();
     };
 }
-
-
 #endif
