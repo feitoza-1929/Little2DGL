@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(L2DGL VERSION 0.3.1)
+project(L2DGL VERSION 0.4.0)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
@@ -16,9 +16,11 @@ add_subdirectory(external_libs/glfw)
 add_subdirectory(examples)
 
 set(SOURCES
+    src/Vector2.cpp
+    src/Color.cpp
+    src/Shader.cpp
     src/Canvas.cpp
-    src/QuadShape.cpp
-    src/Vector2.cpp)
+    src/QuadShape.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 

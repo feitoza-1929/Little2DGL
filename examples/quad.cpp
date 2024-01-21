@@ -14,6 +14,7 @@ int main()
     while (canvas.isOpen())
     {
         canvas.clean();
+        quad.paint(Color(0.5, 0.2, 0.8));
         quad.draw();
         canvas.flip();
     }
