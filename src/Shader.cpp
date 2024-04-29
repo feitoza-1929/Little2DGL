@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace L2DGL::Graphics
+namespace L2DGE::Graphics
 {
     Shader::Shader(const char *vexterPath, const char *fragmentPath)
     {
@@ -78,15 +78,30 @@ namespace L2DGL::Graphics
         glDeleteShader(fragmentShader);
     }
 
-    void Shader::setVariableFloat(char *name, float value)
+    void Shader::setVariableFloat(const char *name, float value)
     {
         glUniform1f(glGetUniformLocation(Id, name), value);
     }
 
-    void Shader::setVariableFloat4(char *name, float* values)
+    void Shader::setVariableFloat2(const char *name, float* values)
+    {
+        glUniform2f(glGetUniformLocation(Id, name), values[0], values[1]);
+    }
+
+    void Shader::setVariableFloat4(const char *name, float* values)
     {
         glUniform4f(glGetUniformLocation(Id, name), values[0], values[1], values[2], values[3]);
     }
+
+  void Shader::setVariableMatrix4(const char *name, float* values)
+  {
+    for(int i = 0; i < 16; i++)
+    {
+      std::cout << values[i] << " ";
+    }
+    std::cout << std::endl;
+    glUniformMatrix4fv(glGetUniformLocation(Id, name), 1, GL_FALSE, values);
+  }
 
     void Shader::activate()
     {

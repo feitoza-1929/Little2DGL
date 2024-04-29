@@ -16,17 +16,27 @@ add_subdirectory(external_libs/glfw)
 add_subdirectory(examples)
 
 set(SOURCES
+    external_libs/stb/stb_image.cpp
+    src/Color.cpp
     src/Vector2.cpp
+    src/Transform.cpp
     src/Color.cpp
     src/Shader.cpp
-    src/Canvas.cpp
-    src/QuadShape.cpp)
+    src/Window.cpp
+    src/Clock.cpp
+    src/Input.cpp
+    src/Renderable.cpp
+    src/Render.cpp
+    src/RenderState.cpp
+    src/VertexBuffer.cpp
+    src/VertexArray.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC include
-    PUBLIC external_libs/glfw
+    PRIVATE external_libs/glfw
+    PRIVATE external_libs/stb
 )
 
 target_link_libraries(${PROJECT_NAME}

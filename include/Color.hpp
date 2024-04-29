@@ -1,7 +1,7 @@
 #ifndef __COLOR_HPP
 #define __COLOR_HPP
 
-namespace L2DGL::Math
+namespace L2DGE::Math
 {
     class Color
     {

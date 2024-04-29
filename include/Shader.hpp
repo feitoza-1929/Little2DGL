@@ -7,7 +7,7 @@
 #include <iostream>
 #include <GL/glew.h>
 
-namespace L2DGL::Graphics
+namespace L2DGE::Graphics
 {
     class Shader
     {
@@ -17,8 +17,10 @@ namespace L2DGL::Graphics
     public:
         Shader() = default;
         Shader(const char *vexterPath, const char *fragmentPath);
-        void setVariableFloat(char *name, float value);
-        void setVariableFloat4(char *name, float *values);
+        void setVariableFloat(const char *name, float value);
+        void setVariableFloat2(const char *name, float *values);
+        void setVariableFloat4(const char *name, float *values);
+      void setVariableMatrix4(const char *name, float* values);
         void activate();
         unsigned int getId();
     };

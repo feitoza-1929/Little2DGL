@@ -1,6 +1,6 @@
 #include <Color.hpp>
 
-namespace L2DGL::Math
+namespace L2DGE::Math
 {
     Color::Color()
     {
