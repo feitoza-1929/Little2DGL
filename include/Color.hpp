@@ -1,18 +1,14 @@
-#ifndef __COLOR_HPP
-#define __COLOR_HPP
+#ifndef COLOR_HPP
+#define COLOR_HPP
 
 namespace L2DGE::Math
 {
-    class Color
-    {
-    public:
-        Color();
-        Color(float r, float g, float b);
-        Color(float r, float g, float b, float a);
-        float r;
-        float g;
-        float b;
-        float a;
-    };
+  typedef struct Color
+  {
+    float r;
+    float g;
+    float b;
+    float a;
+  } Color;
 }
 #endif
