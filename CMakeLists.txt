@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(L2DGL VERSION 0.4.0)
+project(L2DGE VERSION 0.4.0)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
@@ -17,10 +17,6 @@ add_subdirectory(examples)
 
 set(SOURCES
     external_libs/stb/stb_image.cpp
-    src/Color.cpp
-    src/Vector2.cpp
-    src/Transform.cpp
-    src/Color.cpp
     src/Shader.cpp
     src/Window.cpp
     src/Clock.cpp
@@ -37,10 +33,11 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC include
     PRIVATE external_libs/glfw
     PRIVATE external_libs/stb
+    PRIVATE external_libs/glm
 )
 
 target_link_libraries(${PROJECT_NAME}
     GLEW::GLEW
     OpenGL::GL
     glfw
-)
+    )
