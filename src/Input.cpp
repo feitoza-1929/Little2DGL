@@ -18,7 +18,7 @@ namespace L2DGE::Systems
     
     if(action == InputState::KEY_DOWN)
       _keys[key] = true;
-    else
+    else if(action == InputState::KEY_UP)
       _keys[key] = false;
   }
 }
